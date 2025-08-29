@@ -1,10 +1,9 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 
-const FULL_NAME = "Chethan_JS";
+const FULL_NAME = "ChethanJS";
 const DOB = "07052005";
 const EMAIL = "chethan.js2022@vitstudent.ac.in";
 const ROLL_NUMBER = "22BCE0187";
@@ -14,7 +13,10 @@ app.post("/bfhl", (req, res) => {
     const { data } = req.body;
 
     if (!Array.isArray(data)) {
-      return res.status(400).json({ is_success: false, error: "Invalid input format" });
+      return res.status(400).json({
+            is_success: false, 
+            error: "Input must be an array of strings (e.g., [\"1\", \"a\", \"$\"])"
+       });
     }
 
     let oddNumbers = [];
@@ -73,7 +75,7 @@ app.get("/", (req, res) => {
       <title>BFHL API Output</title>
     </head>
     <body style="font-family: Arial; margin: 20px;">
-      <h2>BFHL API Test</h2>
+      <h2>BFHL API Output</h2>
       <p>Enter JSON array (example: ["a","1","334","4","R","$"])</p>
       <textarea id="inputData" rows="5" cols="50">["a","1","334","4","R","$"]</textarea><br><br>
       <button onclick="sendRequest()">Submit</button>
