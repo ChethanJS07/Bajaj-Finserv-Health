@@ -1,7 +1,7 @@
-const express = require("express");
+import express, { json } from "express";
 
 const app = express();
-app.use(express.json());
+app.use(json());
 
 const FULL_NAME = "ChethanJS";
 const DOB = "07052005";
