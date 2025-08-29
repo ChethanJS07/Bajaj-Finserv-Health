@@ -7,6 +7,9 @@ A simple Node.js API using Express that processes an array of inputs and returns
 - Sum of numbers  
 - Concatenated string with alternating caps
 
+![Output Sample](https://drive.google.com/file/d/14hmYib7PXSHM51vSqV6uI73RllgX6EHh/view?usp=sharing)
+
+
 ## Usage
 
 ### Web Interface
