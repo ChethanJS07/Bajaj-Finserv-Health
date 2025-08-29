@@ -66,8 +66,42 @@ app.post("/bfhl", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("BFHL API is running!");
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>BFHL API Output</title>
+    </head>
+    <body style="font-family: Arial; margin: 20px;">
+      <h2>BFHL API Test</h2>
+      <p>Enter JSON array (example: ["a","1","334","4","R","$"])</p>
+      <textarea id="inputData" rows="5" cols="50">["a","1","334","4","R","$"]</textarea><br><br>
+      <button onclick="sendRequest()">Submit</button>
+      <h3>Output:</h3>
+      <pre id="output" style="background:#f4f4f4; padding:10px; margin-top:20px;"></pre>
+
+      <script>
+        async function sendRequest() {
+          const input = document.getElementById("inputData").value;
+          try {
+            const body = { data: JSON.parse(input) };
+            const res = await fetch("/bfhl", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body)
+            });
+            const result = await res.json();
+            document.getElementById("output").textContent = JSON.stringify(result, null, 2);
+          } catch (err) {
+            document.getElementById("output").textContent = "Invalid JSON input!";
+          }
+        }
+      </script>
+    </body>
+    </html>
+  `);
 });
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
