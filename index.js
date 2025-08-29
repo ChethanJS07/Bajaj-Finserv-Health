@@ -67,7 +67,7 @@ app.post("/bfhl", (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
+app.get("/bfhl", (req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html>
